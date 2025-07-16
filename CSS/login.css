@@ -1,0 +1,86 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to bottom right, #fff7f0, #fff0f5);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+  
+  .login-container {
+    background-color: #fff;
+    border: 2px solid #f5c6cb;
+    border-radius: 12px;
+    padding: 30px 40px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 400px;
+  }
+  
+  .login-container h2 {
+    color: #c0392b;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .login-container label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+  }
+  
+  .login-container input[type="email"],
+  .login-container input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 18px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+  }
+  
+  .login-container input[type="email"]:focus,
+  .login-container input[type="password"]:focus {
+    border-color: #e74c3c;
+    outline: none;
+  }
+  
+  .login-container button {
+    width: 100%;
+    padding: 12px;
+    background-color: #e74c3c;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .login-container button:hover {
+    background-color: #c0392b;
+  }
+  
+  .login-container p {
+    text-align: center;
+    margin-top: 15px;
+    color: #666;
+  }
+  
+  .login-container p a {
+    color: #e74c3c;
+    text-decoration: none;
+  }
+  .login-container a {
+    text-decoration: none;
+    color: #fff7f0;
+  }
+  
+  .login-container p a:hover {
+    text-decoration: underline;
+  }
+  

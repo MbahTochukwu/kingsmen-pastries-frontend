@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Dashboard | Kingsmen Pastries</title>
+  <link rel="stylesheet" href="../CSS/admin.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    
+<div id="notification" class="hidden"></div>
+
+    <div class="dashboard-stats">
+  <div class="stat-card" id="total-orders-today">Total Orders Today: 0</div>
+  <div class="stat-card" id="total-orders-week">Total Orders This Week: 0</div>
+  <div class="stat-card" id="best-selling-today">Best Selling Today: N/A</div>
+  <div class="stat-card" id="best-selling-week">Best Selling This Week: N/A</div>
+  <div class="stat-card" id="total-sales">Total Sales: ₦0</div>
+  <div class="stat-card" id="best-selling-item">Best Selling Item: N/A</div>
+</div>
+
+
+
+
+    <div id="admin-orders-list">
+  <h1>Admin Dashboard</h1>
+  <input type="text" id="order-search" placeholder="Search by name or date...">
+<button id="print-btn">🖨️ Print Orders</button>
+<button id="logout-btn">Logout</button>
+  <table id="orders-table">
+    <thead>
+      <tr>
+        <th>Order No.</th>
+        <th>Name</th>
+        <th>Items</th>
+        <th>Total (₦)</th>
+        <th>Address</th>
+        <th>Phone</th>
+        <th>Date</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- JS will insert rows here -->
+    </tbody>
+  </table>
+  <button id="export-csv">Export Orders to CSV</button>
+
+</div>
+
+
+<h2>Sales Charts</h2>
+
+<canvas id="bestSellingChart" width="300" height="150"></canvas>
+<canvas id="salesPieChart" width="300" height="150"></canvas>
+  <script src="../JAVASCRIPT/admin.js"></script>
+</body>
+</html>

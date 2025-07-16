@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Delivery Info | Kingsmen Pastries</title>
+  <style>
+    body { font-family: sans-serif; padding: 2rem; }
+    h2 { text-align: center; }
+    form { max-width: 400px; margin: auto; display: flex; flex-direction: column; }
+    input, textarea { margin: 10px 0; padding: 10px; font-size: 1rem; }
+    button { background-color: orange; color: white; padding: 10px; border: none; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h2>Enter Your Delivery Details</h2>
+
+  <form id="deliveryForm">
+    <input type="text" id="fullName" placeholder="Full Name" required />
+    <input type="text" id="phone" placeholder="Phone Number" required />
+    <textarea id="address" placeholder="Delivery Address" rows="3" required></textarea>
+    <button type="submit"> <a href="../HTML/confirmation.html"></a>  Place Order</button>
+  </form>
+
+  <script>
+    document.getElementById("deliveryForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+    
+      localStorage.setItem("fullName", document.getElementById("fullName").value);
+      localStorage.setItem("phone", document.getElementById("phone").value);
+      localStorage.setItem("address", document.getElementById("address").value);
+
+    
+      window.location.href = "confirmation.html";
+    });
+  </script>
+</body>
+</html>
