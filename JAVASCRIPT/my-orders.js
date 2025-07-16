@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const ordersList = document.getElementById("orders-list");
+  const ordersList = document.getElementById("orders-container");
   const history = JSON.parse(localStorage.getItem("orderHistory")) || [];
 
   if (history.length === 0) {

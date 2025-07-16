@@ -106,8 +106,6 @@ document.addEventListener("DOMContentLoaded", () => {
     return; 
   }
 
-
-
     localStorage.setItem("orderData", JSON.stringify(orderData));
 
     const history = JSON.parse(localStorage.getItem("orderHistory")) || [];
