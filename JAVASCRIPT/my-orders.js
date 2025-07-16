@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
       localStorage.setItem("userName", order.customerName);
       localStorage.setItem("address", order.address);
 
-      window.location.href = "order.html";
+      window.location.href = "checkout.html";
     });
   });
 });
