@@ -61,6 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const name = document.getElementById("userName").value.trim();
     const address = document.getElementById("address").value.trim();
     const phone = document.getElementById("phone").value.trim();
+    const email = document.getElementById("userEmail").value.trim(); // Added email field
 
     const orders = [];
     document.querySelectorAll(".order-section").forEach(section => {
@@ -78,6 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const orderData = {
       customerName: name,
+      email, // Included email in orderData
       address,
       phone,
       items: orders,
@@ -117,3 +119,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
   calculateTotal();
 });
+
