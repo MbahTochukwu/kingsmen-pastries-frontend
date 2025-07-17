@@ -172,6 +172,32 @@ h3 {
   outline: none;
 }
 
+.user-email-section {
+  margin-bottom: 16px; 
+  display: flex;
+  flex-direction: column; 
+}
+
+.user-email-section label {
+  font-weight: 500; 
+  margin-bottom: 6px; 
+  color: #333;
+}
+
+.user-email-section input[type="email"] {
+  padding: 10px; 
+  border: 1px solid #bbb; 
+  border-radius: 4px; 
+  font-size: 1rem; 
+  transition: border-color 0.2s;
+}
+
+.user-email-section input[type="email"]:focus {
+  border-color: #a67c52;
+  outline: none; 
+}
+
+
 @media (max-width: 600px) {
   .order-container {
     padding: 1rem;
