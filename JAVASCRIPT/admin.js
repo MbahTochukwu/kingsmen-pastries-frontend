@@ -208,7 +208,7 @@ function generateCharts(itemSales) {
       labels: items,
       datasets: [{
         data: quantities,
-        backgroundColor: ['#FF6384','#36A2EB','#FFCE56','#8AFF33','#FF33F6','#33FFF3','#FF5733'],
+        backgroundColor: ['#FF6384','#36A2EB','#FFCE56','#8AFF33','#FF33F6','#33FFF3','#FF5733', '#33FF57', '#5733FF','#FF3333','#3333FF', '#33FF8A', '#8A33FF', '#808000', '#800080', '#008080', '#800000', '#008000', '#000080', '#808080', '#FFBF00'],
         borderWidth: 1
       }]
     },
