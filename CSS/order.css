@@ -147,19 +147,22 @@ h3 {
   }
 }
 
-.user-phone-section {
+.user-phone-section,
+.user-email-section {
   margin-bottom: 16px;
   display: flex;
   flex-direction: column;
 }
 
-.user-phone-section label {
+.user-phone-section label,
+.user-email-section label {
   font-weight: 500;
   margin-bottom: 6px;
   color: #333;
 }
 
-.user-phone-section input[type="tel"] {
+.user-phone-section input[type="tel"],
+.user-email-section input[type="email"] {
   padding: 10px;
   border: 1px solid #bbb;
   border-radius: 4px;
@@ -167,34 +170,10 @@ h3 {
   transition: border-color 0.2s;
 }
 
-.user-phone-section input[type="tel"]:focus {
-  border-color: #a67c52;
-  outline: none;
-}
-
-.user-email-section {
-  margin-bottom: 16px; 
-  display: flex;
-  flex-direction: column; 
-}
-
-.user-email-section label {
-  font-weight: 500; 
-  margin-bottom: 6px; 
-  color: #333;
-}
-
-.user-email-section input[type="email"] {
-  padding: 10px; 
-  border: 1px solid #bbb; 
-  border-radius: 4px; 
-  font-size: 1rem; 
-  transition: border-color 0.2s;
-}
-
+.user-phone-section input[type="tel"]:focus,
 .user-email-section input[type="email"]:focus {
   border-color: #a67c52;
-  outline: none; 
+  outline: none;
 }
 
 
