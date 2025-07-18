@@ -1,0 +1,73 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f8f9fa;
+  margin: 0;
+  padding: 20px;
+  color: #333;
+}
+
+.history-container {
+  max-width: 600px;
+  margin: auto;
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.history-container h1 {
+  text-align: center;
+  color: #d2691e; 
+  margin-bottom: 30px;
+}
+
+.order-entry {
+  border-bottom: 1px solid #eee;
+  padding: 15px 0;
+}
+
+.order-entry:last-child {
+  border-bottom: none;
+}
+
+.order-entry h3 {
+  margin: 0;
+  color: #d2691e;
+}
+
+.order-entry p {
+  margin: 5px 0;
+}
+
+.order-entry ul {
+  list-style: none;
+  padding: 0;
+}
+
+.order-entry li {
+  background: #f1f1f1;
+  margin: 5px 0;
+  padding: 8px;
+  border-radius: 4px;
+}
+
+.order-entry button.reorder-btn {
+  background: #d2691e;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  margin-top: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.order-entry button.reorder-btn:hover {
+  background: #a04f1c;
+}
+
+@media (max-width: 600px) {
+  .history-container {
+    padding: 15px;
+  }
+}

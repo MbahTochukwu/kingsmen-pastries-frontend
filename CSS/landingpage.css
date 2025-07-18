@@ -1,0 +1,69 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #fff8f4;
+    color: #333;
+  }
+  
+  .landing-header {
+    background: linear-gradient(to right, #d4145a, #fbb03b);
+    padding: 60px 20px;
+    text-align: center;
+    color: white;
+  }
+  
+  .tagline {
+    font-style: italic;
+    margin-top: 10px;
+  }
+  
+  .landing-main {
+    padding: 40px 20px;
+    text-align: center;
+  }
+  
+  .welcome-section h2 {
+    color: #d4145a;
+    margin-bottom: 10px;
+  }
+  
+  .track-order {
+    margin-top: 40px;
+  }
+  
+  .track-order h3 {
+    color: #d4145a;
+    margin-bottom: 15px;
+  }
+  
+  .track-order input {
+    padding: 12px;
+    width: 250px;
+    max-width: 80%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 10px;
+  }
+  
+  .track-order button {
+    padding: 12px 20px;
+    background-color: #d4145a;
+    border: none;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .track-order button:hover {
+    background-color: #b01047;
+  }
+  
+  .footer {
+    background-color: #d4145a;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    margin-top: 60px;
+  }
+  
