@@ -33,7 +33,8 @@ form#order-form {
 
 .user-name-section,
 .user-address-section,
-.order-section {
+.order-section,
+.user-email-section{
   display: flex;
   flex-direction: column;
   gap: 6px;
