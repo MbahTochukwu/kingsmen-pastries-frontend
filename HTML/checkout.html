@@ -292,7 +292,7 @@ const userId = user?.id || user?._id || null; // Use .id or ._id depending on yo
   };
 
   // Send order to backend
-  fetch("http://localhost:3000/api/orders", {
+  fetch("https://kingsmen-pastries-backend.onrender.com/api/orders", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(orderData)
