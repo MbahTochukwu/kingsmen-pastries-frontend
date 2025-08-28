@@ -11,56 +11,246 @@
   <link rel="manifest" href="../site.webmanifest">
 </head>
 <body>
+  <nav class="menu-nav">
+  <button class="pill" onclick="scrollToSection('drinks')">Drinks</button>
+  <button class="pill" onclick="scrollToSection('snacks')"> Snacks</button>
+  <button class="pill" onclick="scrollToSection('cakes')">Cakes</button>
+  <button class="pill" onclick="scrollToSection('pastries')">Pastries</button>
+  <button class="pill" onclick="scrollToSection('breads')">Breads</button>
+</nav>
+
+
   <header class="menu-header">
     <h1>Our Menu</h1>
     <p>Explore our delicious selection of pastries and snacks</p>
   </header>
 
-  <section class="menu-grid">
-    <div class="menu-item">
-      <img src="../IMAGES/pexels-brigitte-tohm-36757-239578.jpg" alt="Puff Puff" />
-      <h3>Puff Puff</h3>
-      <p>Soft, golden, and sweet fried dough balls.</p>
+  <!-- Drinks Section -->
+<section id="drinks" class="menu-category">
+  <h2>Drinks</h2>
+  <div class="scroll-container">
+    <div class="menu-item"><img src="../IMAGES/zobo.jpeg" alt="zobo">
+    <h3>Zobo</h3>
+    <p>Sweet hibiscus juice</p>
     </div>
-
-    <div class="menu-item">
-      <img src="../IMAGES/pexels-pixabay-33715.jpg" alt="Buns" />
-      <h3>Buns</h3>
-      <p>Crunchy on the outside, soft on the inside.</p>
+    <div class="menu-item"> <img src="../IMAGES/tigernut.jpeg" alt="tigernut">
+    <h3>Tigernut</h3>
+    <p>A blend of tigernut,date and coconut.100% natural</p>
     </div>
-
-    <div class="menu-item">
-      <img src="../IMAGES/pexels-pixabay-267308.jpg" alt="Egg Roll" />
-      <h3>Egg Roll</h3>
-      <p>Boiled egg wrapped in rich dough and deep-fried.</p>
+    <div class="menu-item"><img src="../IMAGES/Greek Yogurt.jpeg" alt="yogurt">
+    <h3> Greet Yogurt</h3>
+    <p>Thick, Healthy, and deliciously fresh.</p>
     </div>
-
-    <div class="menu-item">
-      <img src="../IMAGES/pexels-pixabay-221083.jpg" alt="Shawarma" />
-      <h3>Shawarma</h3>
-      <p>Juicy meat rolled in pita with tasty fillings.</p>
+    <div class="menu-item"><img src="../IMAGES/yogurt.jpeg" alt="yogurt">
+    <h3> Yogurt</h3>
+    <p>Thick,smooth and deliciously fresh.</p>
     </div>
+    <div class="menu-item"><img src="../IMAGES/fruit parfait.jpeg" alt="fruit-yogurt">
+    <h3>Fruit-Parfait</h3>
+    <p>Layers of creamy yogurt, crunchy granola</p> 
+    </div>
+    <div class="menu-item"><img src="../IMAGES/cola.jpeg" alt="cola">
+    <h3>Cola</h3>
+    <p>Classic, blod and fizzy.</p>
+    </div>
+    <div class="menu-item"><img src="../IMAGES/fanta.jpeg" alt="fanta">
+    <h3>Fanta</h3>
+    <p>Our chilled fanta delivers that timeless taste you love</p>
+    </div>
+    <div class="menu-item"><img src="../IMAGES/sprite.jpeg" alt="sprite">
+    <h3>Sprite</h3>
+    <p>Refreshing to the last drop</p>
+    </div>
+    <!-- Add more snack items here -->
+  </div>
+</section>
 
-    <div class="menu-item">
-        <img src="../IMAGES/pexels-leigh-patrick-14477-298217.jpg" alt="Shawarma" />
-        <h3>Shawarma</h3>
-        <p>Juicy meat rolled in pita with tasty fillings.</p>
-      </div>
 
-      <div class="menu-item">
-        <img src="../IMAGES/pexels-brigitte-tohm-36757-239578.jpg" alt="Shawarma" />
-        <h3>Shawarma</h3>
-        <p>Juicy meat rolled in pita with tasty fillings.</p>
-      </div>
+<!-- Snacks Section -->
+<section id="snacks" class="menu-category">
+  <h2>Snacks</h2>
+  <div class="scroll-container">
+    <div class="menu-item"><img src="../IMAGES/small chops.jpeg" alt="small chops" />
+    <h3>Small chops</h3>
+    <p>A mix of puff-puff, samosas,spring roll and more.</p></div>
+    <div class="menu-item"><img src="../IMAGES/cookies B.jpeg" alt="cookies"/>
+    <h3>Chocolate Cookies</h3>
+    <p>Chewy, soft and sweet.</p>
+    </div>
+    <div class="menu-item"><img src="../IMAGES/cookies V.jpeg" alt="cookies V">
+    <h3>  Vanilla Cookies</h3>
+    <p>Baked with love and sweetness</p>
+    </div>
+    <div class="menu-item"><img src="../IMAGES/chinchin.jpeg" alt="chinchin">
+    <h3> Chin-Chin</h3>
+    <p>Golden,crunchy and addictive</p>
+    </div>
+    <div class="menu-item"><img src="../IMAGES/peanuts.jpeg" alt="peanuts">
+    <h3> Peanuts</h3>
+    <p>Munch-on-the-go snack</p>
+    </div>
+    <div class="menu-item"><img src="../IMAGES/pop corn.jpeg" alt="pop corn">
+    <h3>  Pop-corn</h3>
+    <p>Sweet,buttery and crunchy</p>
+    </div>
+    <div class="menu-item"><img src="../IMAGES/puff puff.jpeg" alt="puff puff">
+    <h3>  Puff-puff</h3>
+    <p>Soft,fluffy and golden brown</p>
+    </div>
+    <div class="menu-item"><img src="../IMAGES/buns.jpeg" alt="buns">
+    <h3>  Buns</h3>
+    <p>Crunchy and melts in your mouth</p>
+    </div>
+    <div class="menu-item"><img src="../IMAGES/healthy-snacks.jpg" alt="Healthy snacks">
+    <h3>  Healthy Snacks<h3>
+    <p>Coconut flask, Dates and Amonds</p>
+    </div>
+    <div class="menu-item"><img src="../IMAGES/coconut flask.jpg" alt="Coconut flask">
+    <h3>Coconut flask<h3>
+    <p>Crunchy Coconut flask</p>
+    </div>
+    <!-- Add more snack items here -->
+  </div>
+</section>
 
-      <div class="menu-item">
-        <img src="../IMAGES/pexels-pixabay-33715.jpg" alt="Shawarma" />
-        <h3>Shawarma</h3>
-        <p>Juicy meat rolled in pita with tasty fillings.</p>
-      </div>
 
-   
-  </section>
+  
+
+<!-- Cakes Section -->
+<section id="cakes" class="menu-category">
+  <h2>Cakes</h2>
+  <div class="scroll-container">
+    <div class="menu-item"><img src="../IMAGES/foil cakes.jpeg" alt="foil cakes">
+    <h3>Foil cakes</h3>
+    <p>Moist and ruch sponge cake</p>
+    </div>
+    <div class="menu-item"><img src="../IMAGES/cupcakes.jpeg" alt="cupcakes">
+    <h3>Cupcakes</h3>
+    <p>Fluffy,colorful and big flavor</p>
+    </div>
+    <div class="menu-item"><img src="../IMAGES/brownies.jpeg" alt="brownies">
+    <h3>Brownies</h3>
+    <p>Dense,fudgy and deeply chocolatey</p>
+    </div>
+    <div class="menu-item"><img src="../IMAGES/cake parfait.jpeg" alt="cake parfait">
+    <h3>Cake-parfait</h3>
+    <p>Layers of soft cake,whipped cream and toppings</p>
+    </div>
+    <div class="menu-item"><img src="../IMAGES/strawberry cake.jpeg" alt="strawberry cake">
+    <h3>Strawberry-cake</h3>
+    <p>Soft cake,strawberry and toppings</p>
+    </div>
+    <div class="menu-item"><img src="../IMAGES/vanilla cake.jpeg" alt="vanilla cake">
+    <h3>Vanilla cake</h3>
+    <p>Rich taste of Vanilla</p>
+    </div>
+    <div class="menu-item"><img src="../IMAGES/chocolate cake.jpeg" alt="chocolate cake">
+    <h3>Chocolate cake</h3>
+    <p>Delight for true chocolate lovers</p>
+    </div>
+    <div class="menu-item"><img src="../IMAGES/cake slice.jpeg" alt="Cake slices">
+    <h3>Cake slices</h3>
+    <p>Delight for all cake lovers</p>
+    </div>
+    <!-- Add more snack items here -->
+  </div>
+</section>
+
+
+<!-- Pastries Section -->
+<section id="pastries" class="menu-category">
+  <h2>Pastries</h2>
+  <div class="scroll-container">
+    <div class="menu-item"><img src="../IMAGES/cinnamon rolls.jpeg" alt="cinnamon rolls">
+    <h3>Cinnamon rolls</h3>
+    <p>Soft, fluffy rolls with buttery fillings</p>
+    </div>
+    <div class="menu-item"><img src="../IMAGES/meat pie.jpeg" alt="meat pie">
+    <h3>Meat-pie</h3>
+    <p>A golden, flaky pastry stuffed with goodies</p>
+    </div>
+    <div class="menu-item"><img src="../IMAGES/chicken pie.jpeg" alt="meat pie">
+    <h3>Chicken Pie</h3>
+    <p>A golden, flaky chicken pastry</p>
+    </div>
+    <div class="menu-item"><img src="../IMAGES/burger.jpeg" alt="burger">
+    <h3>Burger</h3>
+    <p>Juicy beef patty with fresh veggies</p>
+    </div>
+    <div class="menu-item"><img src="../IMAGES/shawarma.jpeg" alt="shawarma">
+    <h3>Shawarma</h3>
+    <p>Tender,spiced chicken or beef with sauce and veggies</p>
+    </div>
+    <!-- Add more snack items here -->
+  </div>
+</section>
+
+
+<!-- Breads Section -->
+<section id="breads" class="menu-category">
+  <h2>Breads</h2>
+  <div class="scroll-container">
+    <div class="menu-item"><img src="../IMAGES/banana bread.jpeg" alt="banana bread">
+    <h3>Banana bread</h3>
+    <p>Moist,sweet and packed wit real bananas</p>
+    </div>
+    <div class="menu-item"><img src="../IMAGES/bun.jpeg" alt="bun">
+    <h3>bun</h3>
+    <p>Soft,fluffy and slightly sweet</p>
+    </div>
+    <div class="menu-item"><img src="../IMAGES/bread.jpeg" alt="bread">
+    <h3>White Bread</h3>
+    <p>Freshly baked,soft and delicious wholesome</p>
+    </div>
+    <div class="menu-item"><img src="../IMAGES/wheatbread.jpeg" alt="Wheat bread">
+    <h3>Wheat Bread</h3>
+    <p>Healthy,hearty and full of fiber-rich goodness</p>
+    </div>
+    <div class="menu-item"><img src="../IMAGES/coconut bread.jpeg" alt="Coconut bread">
+    <h3>Coconut Bread</h3>
+    <p>Sweet and soft with rich coconut flavor in every bite</p>
+    </div>
+    <!-- Add more snack items here -->
+  </div>
+</section>
+
+
+
+  <div id="back-btn-container"><a class="back-button" href="../HTML/index.html">BACK</a></div>
+  <button id="backToTop" title="Go to top">↑</button>
+
+<script>
+  function scrollToSection(id) {
+    const section = document.getElementById(id);
+    if (section) {
+      window.scrollTo({
+        top: section.offsetTop - 80, // adjust for sticky nav
+        behavior: 'smooth'
+      });
+    }
+
+    // highlight active pill
+    document.querySelectorAll('.pill').forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
+  }
+</script>
+<script>
+  const backToTopBtn = document.getElementById("backToTop");
+
+  window.onscroll = function () {
+    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+      backToTopBtn.style.display = "block";
+    } else {
+      backToTopBtn.style.display = "none";
+    }
+  };
+
+  backToTopBtn.onclick = function () {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+</script>
+
+
 </body>
 </html>
 

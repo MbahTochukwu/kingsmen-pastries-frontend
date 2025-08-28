@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../CSS/dashboard.css">
+<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+  <link rel="manifest" href="../site.webmanifest">
+</head>
+<body>
+  <div class="dashboard-container">
+    <h2>Welcome to Your Dashboard</h2>
+
+    <div class="profile-section">
+      <img id="profile-pic" alt="Profile Picture" />
+      <p><strong>Name:</strong> <span id="user-name"></span></p>
+      <p><strong>Email:</strong> <span id="user-email"></span></p>
+    </div>
+    <p>You have <span id="food-stamps" style="font-size: larger; font-weight: bolder;">0</span> food stamps!</p>
+    <div id="referral-section" style="margin-top: 30px;">
+  <h3>Your Referral Link</h3>
+  <p>Share this link to earn food stamps:</p>
+  <input type="text" id="referral-link" readonly style="width: 100%; padding: 10px;" />
+  <button id="copy-referral" style="margin-top: 10px; color:blue; background-color: aqua;">Copy Referral Link</button>
+</div>
+
+
+    <div class="editable-section">
+      <label for="user-phone">Phone Number</label>
+      <input type="text" id="user-phone" placeholder="Enter phone number">
+
+      <label for="user-address">Delivery Address</label>
+      <input type="text" id="user-address" placeholder="Enter delivery address">
+
+      <button id="save-info">Save Changes</button>
+    </div>
+
+    <button id="logout-btn" class="logout">Log Out</button>
+  </div>
+ <div id="back-btn-container"><a class="back-button" href="../HTML/index.html">BACK</a></div>
+
+  <script src="../JAVASCRIPT/dashboard.js"></script>
+</body>
+</html>

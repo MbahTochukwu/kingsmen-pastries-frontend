@@ -12,9 +12,19 @@
 </head>
 <body>
   <div class="signup-container">
+    <script>
+  // Check for referral code in the URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const referralCode = urlParams.get('ref');
+  if (referralCode) {
+    localStorage.setItem('referralCodeUsed', referralCode);
+  }
+</script>
+
     <h2>Create an Account</h2>
     <form id="signup-form"
     action="#" method="POST">
+    <input type="hidden" name="referralCode" id="referralCode" />
       <label for="fullname">Full Name:</label>
       <input type="text" id="fullname" name="fullname" placeholder="Enter your full name" required />
 

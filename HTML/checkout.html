@@ -1,24 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Checkout | Kingsmen Pastries</title>
-  <link rel="stylesheet" href="../CSS/checkout.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout - Kingsmen Pastries</title>
   <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
   <link rel="manifest" href="../site.webmanifest">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fffdf5;
+      color: #333;
+    }
+    .checkout-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      color: #d4af37;
+      font-size: 2.5rem;
+    }
+    h2 {
+      color: #c0392b;
+      margin-top: 20px;
+    }
+    form {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      color: #333;
+    }
+    input, textarea, select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1rem;
+    }
+    textarea {
+      resize: vertical;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      background: white;
+    }
+    th, td {
+      padding: 10px;
+      text-align: left;
+      border-bottom: 1px solid #eee;
+    }
+    th {
+      background: #f6f6f6;
+      color: #333;
+    }
+    tfoot td {
+      font-weight: bold;
+      color: #e67e22;
+    }
+    #paystack-section {
+      margin-bottom: 15px;
+    }
+    #pay-btn, button[type="submit"] {
+      background: #652dff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+      display: block;
+      margin: 10px auto;
+    }
+    #pay-btn:hover, button[type="submit"]:hover {
+      background: #e68a00;
+    }
+    #stamp-section {
+      background: white;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      margin-top: 20px;
+    }
+    #stamp-info, #stamp-discount, #discounted-total {
+      color: #e67e22;
+      font-weight: bold;
+    }
+    .back-button {
+      background: #f39c12;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      margin: 20px auto;
+      text-align: center;
+    }
+    .back-button:hover {
+      background: #d35400;
+    }
+    @media (max-width: 768px) {
+      .checkout-container {
+        padding: 10px;
+      }
+      table {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
 </head>
 <body>
   <div class="checkout-container">
     <h1>Checkout</h1>
- 
+    <p id="stamp-info"></p>
 
-    <!-- User Delivery Info -->
     <form id="checkout-form">
       <label for="fullName">Full Name:</label>
       <input type="text" id="fullName" placeholder="Enter your full name" required>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" placeholder="Enter your email address" required>
 
       <label for="phone">Phone Number:</label>
       <input type="tel" id="phone" placeholder="08123456789" required>
@@ -27,18 +144,16 @@
       <textarea id="address" rows="4" placeholder="Enter your delivery address..." required></textarea>
 
       <label for="payment">Payment Method:</label>
-<select id="payment" required>
-  <option value="">Select</option>
-  <option value="pay-on-delivery">Pay on Delivery</option>
-  <option value="paystack">Pay with Card</option>
-</select><br><br>
+      <select id="payment" required>
+        <option value="">Select</option>
+        <option value="pay-on-delivery">Pay on Delivery</option>
+        <option value="paystack">Pay with Card</option>
+      </select>
 
-<div id="paystack-section" style="display: none;">
-  <button id="pay-btn">Pay Now</button>
-</div>
-      
+      <div id="paystack-section" style="display: none;">
+        <button type="button" id="pay-btn">Pay Now</button>
+      </div>
 
-      <!-- Order Summary -->
       <h2>Order Summary</h2>
       <table>
         <thead>
@@ -48,9 +163,7 @@
             <th>Price (₦)</th>
           </tr>
         </thead>
-        <tbody id="order-items">
-          <!-- Populated via JS -->
-        </tbody>
+        <tbody id="order-items"></tbody>
         <tfoot>
           <tr>
             <td colspan="2"><strong>Total</strong></td>
@@ -59,17 +172,181 @@
         </tfoot>
       </table>
 
-      
-
-<div class="delivery-toggle"></div> 
-      <button type="submit"> <a href="../HTML/delivery-details.html"></a>  Place Order</button>
+      <button type="submit">Place Order</button>
     </form>
+
+    <div id="stamp-section">
+      <p>You have <span id="available-stamps">0</span> food stamps (₦200 each)</p>
+      <label for="stamps-to-use">How many would you like to use?</label>
+      <input type="number" id="stamps-to-use" min="0" value="0">
+      <p>Discount: ₦<span id="stamp-discount">0</span></p>
+      <p>New Total: ₦<span id="discounted-total">0</span></p>
+    </div>
+
+    <a href="order.html" class="back-button">Back to Order</a>
   </div>
 
-
   <script src="https://js.paystack.co/v1/inline.js"></script>
-   <script src="../JAVASCRIPT/checkout.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const data = JSON.parse(localStorage.getItem('orderData')) || {};
+      const { customerName = "", address = "", phone = "", items = [], total = 0 } = data;
 
+      document.getElementById('fullName').value = customerName;
+      document.getElementById('address').value = address;
+      document.getElementById('phone').value = phone;
 
-</body>
+      const orderItemsContainer = document.getElementById('order-items');
+      const orderTotalElement = document.getElementById('order-total');
+
+      items.forEach(item => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${item.item}</td>
+          <td>${item.qty}</td>
+          <td>₦${(item.price * item.qty).toLocaleString()}</td>
+        `;
+        orderItemsContainer.appendChild(row);
+      });
+
+      const userStamps = JSON.parse(localStorage.getItem('userStamps')) || 0;
+      const stampValue = 200;
+      const maxStamps = Math.min(userStamps, Math.floor(total / stampValue));
+      let stampsToUse = 0;
+      let discount = stampsToUse * stampValue;
+      let finalTotal = Math.max(total - discount, 0);
+
+      orderTotalElement.textContent = `₦${finalTotal.toLocaleString()}`;
+      document.getElementById('stamp-info').textContent = `Food stamps available: ${userStamps} (₦${stampValue} each)`;
+      document.getElementById('available-stamps').textContent = userStamps;
+      document.getElementById('discounted-total').textContent = finalTotal.toLocaleString();
+
+      const stampsInput = document.getElementById('stamps-to-use');
+      const stampDiscountEl = document.getElementById('stamp-discount');
+      const discountedTotalEl = document.getElementById('discounted-total');
+
+      stampsInput.addEventListener('input', () => {
+        stampsToUse = parseInt(stampsInput.value) || 0;
+        if (stampsToUse > userStamps) {
+          stampsToUse = userStamps;
+          stampsInput.value = stampsToUse;
+        }
+        discount = stampsToUse * stampValue;
+        finalTotal = Math.max(total - discount, 0);
+        stampDiscountEl.textContent = discount.toLocaleString();
+        discountedTotalEl.textContent = finalTotal.toLocaleString();
+        orderTotalElement.textContent = `₦${finalTotal.toLocaleString()}`;
+      });
+
+      document.getElementById('payment').addEventListener('change', function () {
+        const paystackSection = document.getElementById('paystack-section');
+        paystackSection.style.display = this.value === 'paystack' ? 'block' : 'none';
+      });
+
+      function payWithPaystack(amount, email) {
+        let handler = PaystackPop.setup({
+          key: 'pk_test_c0a1552f20cb71f022580f19d91b20977293b913',
+          email: email,
+          amount: amount * 100,
+          currency: 'NGN',
+          ref: '' + Math.floor(Math.random() * 1000000000 + 1),
+          callback: function (response) {
+            alert('Payment successful. Reference: ' + response.reference);
+            // Simulate form submission after payment
+            submitOrder(response.reference);
+          },
+          onClose: function () {
+            alert('Transaction was not completed, window closed.');
+          }
+        });
+        handler.openIframe();
+      }
+// Get userId from localStorage
+const user = JSON.parse(localStorage.getItem("user"));
+const userId = user?.id || user?._id || null; // Use .id or ._id depending on your backend
+
+      function submitOrder(paymentRef = null) {
+  const fullName = document.getElementById('fullName').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const phone = document.getElementById('phone').value.trim();
+  const address = document.getElementById('address').value.trim();
+  const payment = document.getElementById('payment').value;
+
+  if (!fullName || !email || !phone || !address || !payment) {
+    alert('Please fill in all required fields.');
+    return;
+  }
+
+  const orderData = {
+    customerName: fullName,
+    email,
+    phone,
+    address,
+    paymentMethod: payment,
+    items,
+    total: finalTotal,
+    userId,
+    appliedStamps: stampsToUse,
+    orderNumber: `ORD-${Math.floor(100000 + Math.random() * 900000)}`,
+    paymentRef: paymentRef || null
+  };
+
+  // Send order to backend
+  fetch("http://localhost:3000/api/orders", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(orderData)
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data._id || data.order) {
+      // Order saved successfully
+      // Update user stamps
+      localStorage.setItem('userStamps', JSON.stringify(userStamps - stampsToUse));
+      // Save to order history
+      const orderHistory = JSON.parse(localStorage.getItem('orderHistory')) || [];
+      orderHistory.push({
+        name: fullName,
+        date: new Date().toLocaleString(),
+        address: address,
+        items,
+        total: finalTotal
+      });
+      localStorage.setItem('orderHistory', JSON.stringify(orderHistory));
+      // Save final order
+      localStorage.setItem('finalOrder', JSON.stringify(orderData));
+      // Clear cart
+      localStorage.removeItem('orderData');
+      alert('Order placed successfully!');
+      window.location.href = 'confirmation.html';
+    } else {
+      alert("Order failed: " + (data.message || "Unknown error"));
+    }
+  })
+  .catch(err => {
+    alert("Error placing order: " + err);
+  });
+}
+
+      document.getElementById('pay-btn').addEventListener('click', function (e) {
+        e.preventDefault();
+        const email = document.getElementById('email').value.trim();
+        if (!email) {
+          alert('Please enter an email address for payment.');
+          return;
+        }
+        payWithPaystack(finalTotal, email);
+      });
+
+      document.getElementById('checkout-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (document.getElementById('payment').value === 'paystack') {
+          // Paystack payment will trigger submitOrder in callback
+          return;
+        }
+        submitOrder();
+      });
+    });
+  </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96eaa9b1be3aef3b',t:'MTc1NTExMzgwMi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>

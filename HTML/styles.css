@@ -14,13 +14,6 @@
   overflow-x: hidden;
   }
 
-  header {
-    background: linear-gradient(to right, #b30000, #ffcc00);
-    color: white;
-    padding: 1rem 0;
-    text-align: center;
-  }
-
  nav{
  background-color: #fff0ff;
  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
@@ -45,7 +38,7 @@
   font-weight: bolder;
  }
  nav a:hover{
-  background-color:antiquewhite;
+  background-color:rgba(250, 235, 215, 0.986);
  }
  nav li:first-child {
   margin-right: auto;
@@ -57,9 +50,9 @@
   height: 100vh;
   width: 250px;
   z-index: 999;
-  background-color: rgba(255, 255, 255, 0.267);
+  background-color: rgba(255, 255, 255, 0.637);
   backdrop-filter: blur(10px);
-  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.322);
   display: none;
   flex-direction: column;
   align-items: flex-start;
@@ -70,17 +63,6 @@
 }
 .sidebar a{
   width:100%;
-}
-
-.slider {
-  width: 100%;
-  max-width: 1000px;
-  height: 500px;
-  margin: 40px auto;
-  position: relative;
-  overflow: hidden;
-  border-radius: 16px;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.10);
 }
 
 .slides {
@@ -111,28 +93,6 @@
   padding: 10px 20px;
   border-radius: 8px;
 }
-
-.slider-overlay h2 {
-  font-size: 1.8rem;
-}
-
-.cta-btn {
-  display: inline-block;
-  margin-top: 10px;
-  background: #b30000;
-  color: white;
-  padding: 8px 16px;
-  border-radius: 5px;
-  text-decoration: none;
-}
-
-
-  footer {
-    background: #b30000;
-    color: white;
-    padding: 1rem;
-    text-align: center;
-  }
 
   .contact-info {
     margin: 1rem 0;

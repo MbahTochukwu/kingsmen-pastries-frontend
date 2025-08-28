@@ -9,24 +9,45 @@
   <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
   <link rel="manifest" href="../site.webmanifest">
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body>
   <div class="login-container">
     <h2>Welcome Back!</h2>
-    <form id="login-form"
-    action="#" method="POST">
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" placeholder="Enter your email" required />
 
-      <label for="password">Password:</label>
-      <input type="password" id="password" name="password" placeholder="Enter your password" required />
+    <form id="login-form">
+  <label for="email">Email:</label>
+  <input type="email" id="email" name="email" placeholder="Enter your email" required />
 
-      <button type="submit"><a href="../HTML/index.html">Login</a></button> <br><br>
-      <button type="submit"><a href="../HTML/reset-password.html">Reset Password</a></button> <br><br>
-      <button type="submit"><a href="../HTML/forgot-password.html">Forgotten Password?</a></button>
-      <div id="login-message"></div>
-    </form>
-    <p>Don't have an account? <a href="../HTML/signup.html">Sign up</a></p>
+  <label for="password">Password:</label>
+  <input type="password" id="password" name="password" placeholder="Enter your password" required />
+
+  <button type="submit">Login</button> <br><br>
+
+  <div id="g_id_onload"
+     data-client_id="288180948273-ekpj6ijj484g0v2e8apmg8bkve8v3l9j.apps.googleusercontent.com"
+     data-context="signin"
+     data-ux_mode="popup"
+     data-callback="handleGoogleCredentialResponse"
+     data-auto_prompt="false">
+</div>
+
+<div class="g_id_signin"
+     data-type="standard"
+     data-shape="rectangular"
+     data-theme="outline"
+     data-text="sign_in_with"
+     data-size="large"
+     data-logo_alignment="left">
+</div>
+
+
+ <p> <a href="../HTML/reset-password.html" class="auth-link">Reset Password</a> <br><br>
+  <a href="../HTML/forgot-password.html" class="auth-link">Forgotten Password?</a></p>
+
+  <div id="login-message"></div>
+</form>
+<p>Don't have an account? <a href="../HTML/signup.html">Sign up</a></p> 
   </div>
  
   

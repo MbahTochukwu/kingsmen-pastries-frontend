@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const fetchOrders = async () => {
     try {
-      const res = await fetch("https://kingsmen-pastries-backend.onrender.com/api/orders");
+      const res = await fetch("http://localhost:3000/api/orders");
       const data = await res.json();
       return data;
     } catch (err) {
@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
       history.forEach((order, index) => {
         const row = document.createElement("tr");
         const itemsList = order.items.map(item =>
-          `${item.item} x${item.qty} (₦${item.total})`
+          `${item.item} x${item.qty} (₦${item.total !== undefined ? item.total : item.price * item.qty})`
         ).join("<br>");
 
         row.innerHTML = `
@@ -114,7 +114,7 @@ document.querySelectorAll('.fulfill-btn').forEach(button => {
     if (!confirmFulfill) return;
 
     try {
-      const res = await fetch(`https://kingsmen-pastries-backend.onrender.com/api/orders/${orderId}/fulfill`, {
+      const res = await fetch(`http://localhost:3000/api/orders${orderId}/fulfill`, {
         method: 'PATCH'
       });
 
@@ -141,7 +141,7 @@ document.querySelectorAll('.delete-btn').forEach(button => {
     if (!confirmDelete) return;
 
     try {
-      const res = await fetch(`https://kingsmen-pastries-backend.onrender.com/api/orders/${orderId}`, {
+      const res = await fetch(`http://localhost:3000/api/orders${orderId}`, {
         method: 'DELETE'
       });
 

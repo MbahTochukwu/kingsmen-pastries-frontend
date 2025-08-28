@@ -66,6 +66,24 @@ body {
   background: #a04f1c;
 }
 
+
+   .back-button {
+    margin: 15px;
+    padding: 10px 20px;
+    background-color: #ff9900;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+  }
+
+  .back-button:hover {
+    background-color: #e68a00;
+  }
+
 @media (max-width: 600px) {
   .history-container {
     padding: 15px;

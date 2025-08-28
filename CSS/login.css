@@ -84,3 +84,10 @@ body {
     text-decoration: underline;
   }
   
+ .auth-link {
+  color: rgb(10, 10, 12);
+  font-weight: bold;
+  text-decoration: underline;
+  display: inline-block;
+  margin-bottom: 10px;
+}
