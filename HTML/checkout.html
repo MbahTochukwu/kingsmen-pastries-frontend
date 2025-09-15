@@ -186,167 +186,170 @@
     <a href="order.html" class="back-button">Back to Order</a>
   </div>
 
-  <script src="https://js.paystack.co/v1/inline.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const data = JSON.parse(localStorage.getItem('orderData')) || {};
-      const { customerName = "", address = "", phone = "", items = [], total = 0 } = data;
+<script src="https://js.paystack.co/v1/inline.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const data = JSON.parse(localStorage.getItem('orderData')) || {};
+  const { customerName = "", address = "", phone = "", items = [], total = 0 } = data;
 
-      document.getElementById('fullName').value = customerName;
-      document.getElementById('address').value = address;
-      document.getElementById('phone').value = phone;
+  document.getElementById('fullName').value = customerName;
+  document.getElementById('address').value = address;
+  document.getElementById('phone').value = phone;
 
-      const orderItemsContainer = document.getElementById('order-items');
-      const orderTotalElement = document.getElementById('order-total');
+  const orderItemsContainer = document.getElementById('order-items');
+  const orderTotalElement = document.getElementById('order-total');
 
-      items.forEach(item => {
-        const row = document.createElement('tr');
-        row.innerHTML = `
-          <td>${item.item}</td>
-          <td>${item.qty}</td>
-          <td>₦${(item.price * item.qty).toLocaleString()}</td>
-        `;
-        orderItemsContainer.appendChild(row);
-      });
+  items.forEach(item => {
+    const row = document.createElement('tr');
+    row.innerHTML = `
+      <td>${item.item}</td>
+      <td>${item.qty}</td>
+      <td>₦${(item.price * item.qty).toLocaleString()}</td>
+    `;
+    orderItemsContainer.appendChild(row);
+  });
 
-      const userStamps = JSON.parse(localStorage.getItem('userStamps')) || 0;
-      const stampValue = 200;
-      const maxStamps = Math.min(userStamps, Math.floor(total / stampValue));
-      let stampsToUse = 0;
-      let discount = stampsToUse * stampValue;
-      let finalTotal = Math.max(total - discount, 0);
+  const userStamps = JSON.parse(localStorage.getItem('userStamps')) || 0;
+  const stampValue = 200;
+  const maxStamps = Math.min(userStamps, Math.floor(total / stampValue));
+  let stampsToUse = 0;
+  let discount = stampsToUse * stampValue;
+  let finalTotal = Math.max(total - discount, 0);
 
-      orderTotalElement.textContent = `₦${finalTotal.toLocaleString()}`;
-      document.getElementById('stamp-info').textContent = `Food stamps available: ${userStamps} (₦${stampValue} each)`;
-      document.getElementById('available-stamps').textContent = userStamps;
-      document.getElementById('discounted-total').textContent = finalTotal.toLocaleString();
+  orderTotalElement.textContent = `₦${finalTotal.toLocaleString()}`;
+  document.getElementById('stamp-info').textContent = `Food stamps available: ${userStamps} (₦${stampValue} each)`;
+  document.getElementById('available-stamps').textContent = userStamps;
+  document.getElementById('discounted-total').textContent = finalTotal.toLocaleString();
 
-      const stampsInput = document.getElementById('stamps-to-use');
-      const stampDiscountEl = document.getElementById('stamp-discount');
-      const discountedTotalEl = document.getElementById('discounted-total');
+  const stampsInput = document.getElementById('stamps-to-use');
+  const stampDiscountEl = document.getElementById('stamp-discount');
+  const discountedTotalEl = document.getElementById('discounted-total');
 
-      stampsInput.addEventListener('input', () => {
-        stampsToUse = parseInt(stampsInput.value) || 0;
-        if (stampsToUse > userStamps) {
-          stampsToUse = userStamps;
-          stampsInput.value = stampsToUse;
-        }
-        discount = stampsToUse * stampValue;
-        finalTotal = Math.max(total - discount, 0);
-        stampDiscountEl.textContent = discount.toLocaleString();
-        discountedTotalEl.textContent = finalTotal.toLocaleString();
-        orderTotalElement.textContent = `₦${finalTotal.toLocaleString()}`;
-      });
+  stampsInput.addEventListener('input', () => {
+    stampsToUse = parseInt(stampsInput.value) || 0;
+    if (stampsToUse > userStamps) {
+      stampsToUse = userStamps;
+      stampsInput.value = stampsToUse;
+    }
+    discount = stampsToUse * stampValue;
+    finalTotal = Math.max(total - discount, 0);
+    stampDiscountEl.textContent = discount.toLocaleString();
+    discountedTotalEl.textContent = finalTotal.toLocaleString();
+    orderTotalElement.textContent = `₦${finalTotal.toLocaleString()}`;
+  });
 
-      document.getElementById('payment').addEventListener('change', function () {
-        const paystackSection = document.getElementById('paystack-section');
-        paystackSection.style.display = this.value === 'paystack' ? 'block' : 'none';
-      });
+  document.getElementById('payment').addEventListener('change', function () {
+    document.getElementById('paystack-section').style.display = this.value === 'paystack' ? 'block' : 'none';
+  });
 
-      function payWithPaystack(amount, email) {
-        let handler = PaystackPop.setup({
-          key: 'pk_test_c0a1552f20cb71f022580f19d91b20977293b913',
-          email: email,
-          amount: amount * 100,
-          currency: 'NGN',
-          ref: '' + Math.floor(Math.random() * 1000000000 + 1),
-          callback: function (response) {
-            alert('Payment successful. Reference: ' + response.reference);
-            // Simulate form submission after payment
-            submitOrder(response.reference);
-          },
-          onClose: function () {
-            alert('Transaction was not completed, window closed.');
-          }
-        });
-        handler.openIframe();
+  function payWithPaystack(amount, email) {
+    let handler = PaystackPop.setup({
+      key: 'pk_test_c0a1552f20cb71f022580f19d91b20977293b913',
+      email: email,
+      amount: amount * 100,
+      currency: 'NGN',
+      ref: '' + Math.floor(Math.random() * 1000000000 + 1),
+      callback: function (response) {
+        alert('Payment successful. Reference: ' + response.reference);
+        submitOrder(response.reference);
+      },
+      onClose: function () {
+        alert('Transaction was not completed, window closed.');
       }
-// Get userId from localStorage
-const user = JSON.parse(localStorage.getItem("user"));
-const userId = user?.id || user?._id || null; // Use .id or ._id depending on your backend
-
-      function submitOrder(paymentRef = null) {
-  const fullName = document.getElementById('fullName').value.trim();
-  const email = document.getElementById('email').value.trim();
-  const phone = document.getElementById('phone').value.trim();
-  const address = document.getElementById('address').value.trim();
-  const payment = document.getElementById('payment').value;
-
-  if (!fullName || !email || !phone || !address || !payment) {
-    alert('Please fill in all required fields.');
-    return;
+    });
+    handler.openIframe();
   }
 
-  const orderData = {
-    customerName: fullName,
-    email,
-    phone,
-    address,
-    paymentMethod: payment,
-    items,
-    total: finalTotal,
-    userId,
-    appliedStamps: stampsToUse,
-    orderNumber: `ORD-${Math.floor(100000 + Math.random() * 900000)}`,
-    paymentRef: paymentRef || null
-  };
+  function submitOrder(paymentRef = null) {
+    const fullName = document.getElementById('fullName').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const address = document.getElementById('address').value.trim();
+    const payment = document.getElementById('payment').value;
 
-  // Send order to backend
-  fetch("https://kingsmen-pastries-backend.onrender.com/api/orders", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(orderData)
-  })
-  .then(res => res.json())
-  .then(data => {
-    if (data._id || data.order) {
-      // Order saved successfully
-      // Update user stamps
-      localStorage.setItem('userStamps', JSON.stringify(userStamps - stampsToUse));
-      // Save to order history
-      const orderHistory = JSON.parse(localStorage.getItem('orderHistory')) || [];
-      orderHistory.push({
-        name: fullName,
-        date: new Date().toLocaleString(),
-        address: address,
-        items,
-        total: finalTotal
-      });
-      localStorage.setItem('orderHistory', JSON.stringify(orderHistory));
-      // Save final order
-      localStorage.setItem('finalOrder', JSON.stringify(orderData));
-      // Clear cart
-      localStorage.removeItem('orderData');
-      alert('Order placed successfully!');
-      window.location.href = 'confirmation.html';
-    } else {
-      alert("Order failed: " + (data.message || "Unknown error"));
+    if (!fullName || !email || !phone || !address || !payment) {
+      alert('Please fill in all required fields.');
+      return;
     }
-  })
-  .catch(err => {
-    alert("Error placing order: " + err);
-  });
-}
 
-      document.getElementById('pay-btn').addEventListener('click', function (e) {
-        e.preventDefault();
-        const email = document.getElementById('email').value.trim();
-        if (!email) {
-          alert('Please enter an email address for payment.');
-          return;
-        }
-        payWithPaystack(finalTotal, email);
-      });
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (!currentUser || !currentUser.id) {
+      alert('Please log in to place an order.');
+      window.location.href = 'login.html?redirect=checkout.html';
+      return;
+    }
 
-      document.getElementById('checkout-form').addEventListener('submit', (e) => {
-        e.preventDefault();
-        if (document.getElementById('payment').value === 'paystack') {
-          // Paystack payment will trigger submitOrder in callback
-          return;
-        }
-        submitOrder();
-      });
+    const orderData = {
+      customerName: fullName,
+      email,
+      phone,
+      address,
+      paymentMethod: payment,
+      items,
+      total,
+      userId: currentUser.id, // Use id from localStorage
+      appliedStamps: stampsToUse,
+      orderNumber: `ORD-${Math.floor(100000 + Math.random() * 900000)}`,
+      paymentRef: paymentRef || null
+    };
+
+    fetch("https://kingsmen-pastries-backend.onrender.com/api/orders", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.getItem('token')}` // Add token to header
+      },
+      body: JSON.stringify(orderData)
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data._id || data.order) {
+        localStorage.setItem('userStamps', JSON.stringify(userStamps - stampsToUse));
+        const orderHistory = JSON.parse(localStorage.getItem('orderHistory')) || [];
+        orderHistory.push({
+          name: fullName,
+          date: new Date().toLocaleString(),
+          address: address,
+          items,
+          total: finalTotal
+        });
+        localStorage.setItem('orderHistory', JSON.stringify(orderHistory));
+        localStorage.setItem('finalOrder', JSON.stringify(orderData));
+        localStorage.removeItem('orderData');
+        alert('Order placed successfully!');
+        window.location.href = 'confirmation.html';
+      } else {
+        alert("Order failed: " + (data.message || "Unknown error"));
+      }
+    })
+    .catch(err => {
+      console.error('Error placing order:', err);
+      alert("Error placing order: " + err);
     });
-  </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96eaa9b1be3aef3b',t:'MTc1NTExMzgwMi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+  }
+
+  document.getElementById('pay-btn').addEventListener('click', function (e) {
+    e.preventDefault();
+    const email = document.getElementById('email').value.trim();
+    if (!email) {
+      alert('Please enter an email address for payment.');
+      return;
+    }
+    payWithPaystack(finalTotal, email);
+  });
+
+  document.getElementById('checkout-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (document.getElementById('payment').value === 'paystack') return;
+    submitOrder();
+  });
+});
+</script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96eaa9b1be3aef3b',t:'MTc1NTExMzgwMi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script> -->
+
+
+
+
+
+</body> 
 </html>

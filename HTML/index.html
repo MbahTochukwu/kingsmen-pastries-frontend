@@ -64,10 +64,7 @@
   </style>
   <script>
   document.addEventListener("DOMContentLoaded", () => {
-    const user = localStorage.getItem("user");
-    if (!user) {
-      window.location.href = "login.html";
-    }
+  // No login check; allow free browsing
   });
 </script>
 
@@ -118,14 +115,14 @@
   <section id="menu" class="section">
     <h2>Our Best Selling</h2>
     <div class="menu-items">
-      <div><img src="../IMAGES/meat pie.jpeg" alt="Puff Puff"><p>Meat pie</p></div>
-      <div><img src="../IMAGES/zobo.jpeg" alt="Buns"><p>Zobo</p></div>
-      <div><img src="../IMAGES/brownies.jpeg" alt="Egg Rolls"><p>Brownies</p></div>
+      <div><img src="../IMAGES/meat pie.jpeg" alt="Meat pie"><p>Meat pie</p></div>
+      <div><img src="../IMAGES/zobo.jpeg" alt="Zobo"><p>Zobo</p></div>
+      <div><img src="../IMAGES/brownies.jpeg" alt="Brownies"><p>Brownies</p></div>
       <div><img src="../IMAGES/chocolate cake.jpeg" alt="Cake"><p>Cake</p></div>
-      <div><img src="../IMAGES/shawarma.jpeg" alt="Shawarma"><p>Shawarma</p></div>
-      <div><img src="../IMAGES/cinnamon rolls.jpeg" alt="cinnamon rolls"><p>Cinnamon rolls</p></div>
+      <div><img src="../IMAGES/cookies V.jpeg" alt="cookies"><p>Cookies</p></div>
+      <div><img src="../IMAGES/cookies B.jpeg" alt="Cookies"><p>Cookies</p></div>
       <div><img src="../IMAGES/small chops.jpeg" alt="Small Chops"><p>Small Chops</p></div>
-      <div><img src="../IMAGES/chinchin.jpeg" alt="Samosa"><p>Chinchin</p></div>
+      <div><img src="../IMAGES/chinchin.jpeg" alt="Chinchin"><p>Chinchin</p></div>
   </section>
 
   <section id="order" class="section track-order">
@@ -192,81 +189,79 @@
 
   <script>
 
+document.addEventListener("DOMContentLoaded", () => {
+  // No login check; allow free browsing
+});
 
-    function showSidebar() {
-      const sidebar = document.querySelector('.sidebar');
-      sidebar.style.display = 'flex'
-    }
-    function hideSidebar() {
-      const sidebar = document.querySelector('.sidebar');
-      sidebar.style.display = 'none';
-    }
-
-   
-    let currentSlide = 0;
-    const slides = document.querySelectorAll('.slide');
-    setInterval(() => {
-      slides[currentSlide].classList.remove('active');
-      currentSlide = (currentSlide + 1) % slides.length;
-      slides[currentSlide].classList.add('active');
-    }, 3000);
+// Existing slider and track order scripts remain unchanged
+let currentSlide = 0;
+const slides = document.querySelectorAll('.slide');
+setInterval(() => {
+  slides[currentSlide].classList.remove('active');
+  currentSlide = (currentSlide + 1) % slides.length;
+  slides[currentSlide].classList.add('active');
+}, 3000);
 
 document.getElementById('track-btn').addEventListener('click', () => {
-    const input = document.getElementById('track-input').value.trim();
-    const statusDiv = document.getElementById('track-status'); 
-    const progressContainer = document.getElementById('progress-container');
-    const progressBar = document.getElementById('progress-bar');
+  const input = document.getElementById('track-input').value.trim();
+  const statusDiv = document.getElementById('track-status');
+  const progressContainer = document.getElementById('progress-container');
+  const progressBar = document.getElementById('progress-bar');
 
-    if (!input) {
-      statusDiv.textContent = "Please enter your order number.";
-      statusDiv.style.color = "#d19c6b";
-      return;
-    }
+  if (!input) {
+    statusDiv.textContent = "Please enter your order number.";
+    statusDiv.style.color = "#d19c6b";
+    return;
+  }
 
-    // Show progress bar
-    progressContainer.style.display = "block";
+  progressContainer.style.display = "block";
+  let phase1 = 5 * 60, phase2 = 2 * 60, phase3 = 45 * 60;
 
-    // Phase durations in seconds
-    let phase1 = 5 * 60;   // 5 mins
-    let phase2 = 2 * 60;   // 2 mins
-    let phase3 = 45 * 60;  // 45 mins
+  function startCountdown(duration, message, nextPhase, phaseStartPercent, phaseEndPercent) {
+    let timer = duration, total = duration;
+    let countdown = setInterval(() => {
+      let minutes = Math.floor(timer / 60);
+      let seconds = timer % 60;
+      statusDiv.innerHTML = `${message} <br> ⏳ ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+      let progress = ((total - timer) / total) * (phaseEndPercent - phaseStartPercent) + phaseStartPercent;
+      progressBar.style.width = progress + "%";
+      if (--timer < 0) {
+        clearInterval(countdown);
+        if (nextPhase) nextPhase();
+      }
+    }, 1000);
+  }
 
-    function startCountdown(duration, message, nextPhase, phaseStartPercent, phaseEndPercent) {
-      let timer = duration;
-      let total = duration;
+  startCountdown(phase1, "🚴 Rider is on the way to the restaurant...", () => {
+    startCountdown(phase2, "🛍️ Rider is picking up your order...", () => {
+      startCountdown(phase3, `🚚 Order ${input} is on the way...`, () => {
+        statusDiv.innerHTML = "✅ Order has arrived!";
+        progressBar.style.width = "100%";
+      }, 30, 100);
+    }, 20, 30);
+  }, 0, 20);
+});
 
-      let countdown = setInterval(() => {
-        let minutes = Math.floor(timer / 60);
-        let seconds = timer % 60;
+// Existing sidebar and service worker scripts remain unchanged
+function showSidebar() { document.querySelector('.sidebar').style.display = 'flex'; }
+function hideSidebar() { document.querySelector('.sidebar').style.display = 'none'; }
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("/sw.js").then(() => console.log("Service Worker Registered"));
+}
 
-        statusDiv.innerHTML = `${message} <br> ⏳ ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-
-        // Update progress bar
-        let progress = ((total - timer) / total) * (phaseEndPercent - phaseStartPercent) + phaseStartPercent;
-        progressBar.style.width = progress + "%";
-
-        if (--timer < 0) {
-          clearInterval(countdown);
-          if (nextPhase) nextPhase();
-        }
-      }, 1000);
-    }
-
-    // Start Phase 1 (0% -> 20%)
-    startCountdown(phase1, "🚴 Rider is on the way to the restaurant...", () => {
-      // Start Phase 2 (20% -> 30%)
-      startCountdown(phase2, "🛍️ Rider is picking up your order...", () => {
-        // Start Phase 3 (30% -> 100%)
-        startCountdown(phase3, `🚚 Order ${input} is on the way...`, () => {
-          statusDiv.innerHTML = "✅ Order has arrived!";
-          progressBar.style.width = "100%";
-        }, 30, 100);
-      }, 20, 30);
-    }, 0, 20);
-  });
+// Ping backend every 5 minutes (300,000 ms) to keep it active
+  setInterval(() => {
+    fetch('https://kingsmen-pastries-backend.onrender.com/api/ping', {
+      method: 'GET',
+      headers: { 'Cache-Control': 'no-cache' }
+    })
+    .catch(err => console.error('Ping failed:', err));
+  }, 300000); // 5 minutes
+;
+</script>
 
 
-  </script>
+  // </script>
   <script src="script.js?v=2"></script>
   <script>
   if ("serviceWorker" in navigator) {

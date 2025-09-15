@@ -234,3 +234,13 @@ html {
   padding: 10px;
   text-align: center;
 }
+
+.A001 {
+  color: red;
+  font-weight: bold;
+}
+
+.A002 {
+  color: #e68a00;
+  font-weight: bold;
+}
