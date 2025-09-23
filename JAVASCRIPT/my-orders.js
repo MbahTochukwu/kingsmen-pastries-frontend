@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Use 'items' instead of 'orders'
     if (!order.items || !Array.isArray(order.items)) return;
 
-    const orderNumber = index + 1;
+    const orderNumber = 1000 + index; // Start from 1000 and increment by index
     const orderDiv = document.createElement("div");
     orderDiv.className = "order-entry";
 
