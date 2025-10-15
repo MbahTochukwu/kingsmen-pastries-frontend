@@ -34,6 +34,17 @@ document.addEventListener("DOMContentLoaded", () => {
         };
         localStorage.setItem("token", data.token);
         localStorage.setItem("currentUser", JSON.stringify(user));
+
+       // Notify on login
+        await fetch('https://kingsmen-pastries-backend.onrender.com/api/notify-visit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email: user.email,
+            name: user.name || 'Unknown',
+          }),
+        }).catch(err => console.error('Login notification failed:', err));
+
         const redirect = new URLSearchParams(window.location.search).get('redirect') || 'index.html';
         setTimeout(() => {
           window.location.href = redirect;
@@ -70,6 +81,19 @@ function handleGoogleCredentialResponse(response) {
         };
         localStorage.setItem("currentUser", JSON.stringify(user));
         localStorage.setItem("token", data.token);
+
+       // Notify on Google login
+        fetch('https://kingsmen-pastries-backend.onrender.com/api/notify-visit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email: user.email,
+            name: user.name || 'Unknown',
+          }),
+        }).catch(err => console.error('Google login notification failed:', err));
+
+
+
         alert('Logged in successfully!');
         const redirect = new URLSearchParams(window.location.search).get('redirect') || 'index.html';
         window.location.href = redirect;

@@ -198,7 +198,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // No login check; allow free browsing
 });
 
-// Existing slider and track order scripts remain unchanged
+//  slider and track order scripts 
 let currentSlide = 0;
 const slides = document.querySelectorAll('.slide');
 setInterval(() => {
@@ -263,6 +263,36 @@ if ("serviceWorker" in navigator) {
     .catch(err => console.error('Ping failed:', err));
   }, 300000); // 5 minutes
 ;
+
+// Notification popup logic
+  const notificationPopup = document.getElementById("notification-popup");
+  const lastVisit = localStorage.getItem("lastVisit");
+  const now = new Date().getTime();
+  const threeDaysInMs = 3 * 24 * 60 * 60 * 1000;
+
+  localStorage.setItem("lastVisit", now);
+  if (lastVisit && (now - parseInt(lastVisit)) > threeDaysInMs) {
+    notificationPopup.style.display = "block";
+  }
+
+  window.closeNotification = function () {
+    notificationPopup.style.display = "none";
+  };
+
+  // Notify on site entry
+  const currentUser = JSON.parse(localStorage.getItem("currentUser")) || {};
+  fetch('https://kingsmen-pastries-backend.onrender.com/api/notify-visit', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      email: currentUser.email || 'anonymous',
+      name: currentUser.name || 'Anonymous Visitor',
+    }),
+  }).catch(err => console.error('Visit notification failed:', err));
+  ;
+
+
+
 </script>
 
 
