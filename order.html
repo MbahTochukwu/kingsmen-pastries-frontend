@@ -810,11 +810,23 @@ document.querySelectorAll('.size-select, .size-select1, .size-select12, .size-se
 });
 
 function proceedToCheckout() {
-  const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-  if (currentUser && currentUser.token) {
+  // accept either "user" or legacy "currentUser"
+  const stored = localStorage.getItem('user') || localStorage.getItem('currentUser');
+  let session = null;
+  try {
+    session = stored ? JSON.parse(stored) : null;
+  } catch (e) {
+    session = null;
+  }
+
+  const token = session?.token || localStorage.getItem('token') || null;
+
+  if (session && token) {
+    // user authenticated -> go to checkout
     window.location.href = 'checkout.html';
   } else {
-    // window.location.href = 'login.html?redirect=checkout.html';
+    // not authenticated -> redirect to login and return to checkout after login
+    window.location.href = 'login.html?redirect=checkout.html';
   }
 }
 
